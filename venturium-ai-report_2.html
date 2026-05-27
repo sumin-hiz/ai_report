@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>벤처리움 — AI 활용 & 레슨런</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --header-bg: #225AB8;
+      --header-title: #B3E7FF;
+      --body-bg: #E4F7FF;
+      --section-title: #174CA5;
+      --body-text: #393D44;
+      --accent-blue: #3B78D4;
+      --accent-light: #B3E7FF;
+      --border: #b3d6f5;
+      --font: 'Pretendard', -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--body-bg);
+      color: var(--body-text);
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background-color: var(--header-bg);
+      padding: 60px 40px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: 30%;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-label {
+      display: inline-block;
+      font-family: var(--font);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--header-title);
+      opacity: 0.75;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-family: var(--font);
+      font-size: clamp(2.75rem, 5vw, 4.15rem);
+      font-weight: 700;
+      color: var(--header-title);
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+    }
+
+    .header-tagline {
+      font-family: var(--font);
+      font-size: 17px;
+      color: var(--header-title);
+      opacity: 0.85;
+      font-weight: 400;
+      max-width: 560px;
+      margin-bottom: 32px;
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+    }
+
+    .header-badge {
+      display: inline-block;
+      font-family: var(--font);
+      background: rgba(179,231,255,0.22);
+      border: 1px solid rgba(179,231,255,0.45);
+      color: var(--header-title);
+      border-radius: 20px;
+      font-size: 17px;
+      font-weight: 500;
+      padding: 6px 16px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 64px;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      margin-top: 64px;
+    }
+    .section-header:first-child { margin-top: 0; }
+
+    .section-num {
+      font-family: var(--font);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--accent-blue);
+      background: var(--accent-light);
+      border-radius: 50%;
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      letter-spacing: 0.04em;
+    }
+
+    .section-title {
+      font-family: var(--font);
+      font-size: 1.38rem;
+      font-weight: 700;
+      color: var(--section-title);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── INFO TABLE ── */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 0 0 var(--border);
+    }
+    .info-table td {
+      padding: 16px 20px;
+      font-family: var(--font);
+      font-size: 16.5px;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: 0.01em;
+    }
+    .info-table td:first-child {
+      font-weight: 700;
+      color: var(--section-title);
+      width: 130px;
+      white-space: nowrap;
+      background: rgba(59,120,212,0.07);
+      letter-spacing: 0.03em;
+    }
+    .info-table td:last-child {
+      color: var(--body-text);
+      background: #fff;
+    }
+    .info-table tr:last-child td { border-bottom: none; }
+
+    /* ── AI USAGE CARDS ── */
+    .usage-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .usage-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      position: relative;
+    }
+
+    .usage-card-num {
+      font-family: var(--font);
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--accent-blue);
+      background: var(--accent-light);
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .usage-card h3 {
+      font-family: var(--font);
+      font-size: 1.23rem;
+      font-weight: 700;
+      color: var(--section-title);
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .usage-card p, .usage-card li {
+      font-family: var(--font);
+      font-size: 16px;
+      color: var(--body-text);
+      line-height: 1.75;
+    }
+
+    .usage-card ul { padding-left: 18px; margin-top: 8px; }
+    .usage-card ul li { margin-bottom: 6px; }
+
+    /* flow steps */
+    .flow-steps { margin-top: 14px; display: flex; flex-direction: column; gap: 0; }
+    .flow-step {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0; border-left: 2px solid var(--border);
+      padding-left: 16px; position: relative;
+    }
+    .flow-step::before {
+      content: ''; position: absolute; left: -5px; top: 16px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent-blue);
+    }
+    .flow-step:last-child { border-left: 2px solid transparent; }
+    .flow-step p {
+      font-family: var(--font);
+      font-size: 15.5px; color: var(--body-text); line-height: 1.65;
+    }
+    .flow-step strong { color: var(--section-title); font-weight: 600; }
+
+    /* note box */
+    .note-box {
+      margin-top: 14px;
+      background: rgba(59,120,212,0.06);
+      border: 1px solid rgba(59,120,212,0.25);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-family: var(--font);
+      font-size: 15.5px;
+      color: var(--body-text);
+      line-height: 1.7;
+    }
+    .note-box strong { color: var(--section-title); }
+
+    /* tags */
+    .tag-row { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+    .tag-item { display: flex; gap: 12px; align-items: flex-start; }
+    .tag-label {
+      flex-shrink: 0;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 2px;
+    }
+    .tag-label.good { background: var(--accent-light); color: var(--section-title); }
+    .tag-label.bad  { background: #f3ede8; color: #8a6b55; }
+    .tag-item p { font-family: var(--font); font-size: 15.5px; line-height: 1.7; color: var(--body-text); }
+
+    /* ── LESSON SECTION WRAPPER ── */
+    .lesson-section {
+      background-color: #C9EEFF;
+      padding: 60px 24px 80px;
+    }
+    .lesson-section-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .lesson-section .section-title { color: var(--section-title); }
+    .section-num--light {
+      background: #E4F7FF !important;
+      color: var(--accent-blue) !important;
+    }
+    .lesson-section .lesson-card {
+      background: rgba(255,255,255,0.80);
+      border-color: rgba(59,120,212,0.2);
+      backdrop-filter: blur(4px);
+    }
+
+    /* ── LESSON CARDS ── */
+    .lesson-list { display: flex; flex-direction: column; gap: 20px; }
+
+    .lesson-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .lesson-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--accent-blue);
+      border-radius: 4px 0 0 4px;
+    }
+
+    .lesson-num {
+      font-family: var(--font);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--accent-blue);
+      background: var(--accent-light);
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+
+    .lesson-card h3 {
+      font-family: var(--font);
+      font-size: 1.33rem;
+      font-weight: 700;
+      color: var(--section-title);
+      margin-bottom: 16px;
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+    }
+
+    .lesson-quote {
+      font-family: var(--font);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--section-title);
+      border-left: 3px solid var(--accent-blue);
+      padding-left: 16px;
+      margin-bottom: 16px;
+      line-height: 1.75;
+      letter-spacing: 0.01em;
+    }
+
+    .lesson-body {
+      font-family: var(--font);
+      font-size: 16px;
+      color: var(--body-text);
+      line-height: 1.8;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── WORK LINK BUTTON ── */
+    .work-link-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 22px;
+      background: var(--section-title);
+      color: #fff;
+      font-family: var(--font);
+      font-size: 15.5px;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: background 0.18s ease, transform 0.15s ease;
+    }
+    .work-link-btn:hover {
+      background: var(--accent-blue);
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--header-bg);
+      color: rgba(179,231,255,0.7);
+      text-align: center;
+      padding: 28px 24px;
+      font-family: var(--font);
+      font-size: 15px;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="header-label">Venturium · AI Report</div>
+    <h1>벤처리움</h1>
+    <p class="header-tagline">스타트업 기업, 벤처기업들이 꿈을 펼칠 수 있게<br>공간, 네트워킹 등을 제공합니다.<br>히즈는 행사/입주기업을 소개하는 카드뉴스를 제작합니다.</p>
+    <span class="header-badge">AI 활용 사례 & 레슨런</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- 01 프로젝트 개요 -->
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-title">프로젝트 개요</div>
+  </div>
+
+  <table class="info-table">
+    <tr>
+      <td>최종 미션</td>
+      <td>벤처리움 인지도 향상</td>
+    </tr>
+    <tr>
+      <td>인스타그램 미션</td>
+      <td>팔로워 증진, 조회수 증진 → 사람들에게 '닿기'</td>
+    </tr>
+    <tr>
+      <td>주요 과업</td>
+      <td>카드뉴스 제작, 제작 일정 관리</td>
+    </tr>
+  </table>
+
+
+  <!-- 02 AI 활용 현황 -->
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div class="section-title">AI 활용 현황</div>
+  </div>
+
+  <div class="usage-grid">
+
+    <!-- 사용 툴 -->
+    <div class="usage-card">
+      <div class="usage-card-num">사용 툴</div>
+      <h3>활용 중인 AI 도구</h3>
+      <ul>
+        <li>Claude</li>
+        <li>Chat GPT</li>
+        <li>Magnific (구 Freepik — 사진 스톡 &amp; 생성형 AI 엔진)</li>
+      </ul>
+    </div>
+
+    <!-- 사용 루틴 -->
+    <div class="usage-card">
+      <div class="usage-card-num">사용 루틴</div>
+      <h3>벤처리움 입주기업 소개 카드뉴스 만들기</h3>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <p><strong>Step 1.</strong> mysc(벤처리움 운영사)를 통해 입주기업 소개 내용 수급</p>
+        </div>
+        <div class="flow-step">
+          <p><strong>Step 2.</strong> 이미지 제공이 충분하지 않거나 모르는 산업 분야인 경우 → 소개 내용을 Claude 또는 ChatGPT에 붙여넣기</p>
+        </div>
+        <div class="flow-step">
+          <p><strong>Step 3.</strong> 해당 기업의 산업과 관련한 키워드 / 이미지 제작 프롬프트 요청</p>
+        </div>
+        <div class="flow-step">
+          <p><strong>Step 4.</strong> 추출된 키워드 및 프롬프트를 Magnific에 붙여넣어 이미지 검색 또는 생성</p>
+        </div>
+        <div class="flow-step">
+          <p><strong>Step 5.</strong> 카드뉴스에 사용하기 적절한 이미지 생성 / 다운로드 완료</p>
+        </div>
+      </div>
+      <a href="https://www.figma.com/proto/enFHCQ3SaciSG1xMn4ucDC/%EB%B2%A4%EC%B2%98%EB%A6%AC%EC%9B%80-%EC%9C%84%EC%B9%98-%EC%9D%B4%EB%8F%99-%EC%98%88%EC%A0%95-?node-id=290-4&t=XRLc9NcFPZnt4sLh-1" target="_blank" rel="noopener noreferrer" class="work-link-btn">작업 보러가기 →</a>
+    </div>
+
+    <!-- 개선된 점 & 한계 -->
+    <div class="usage-card">
+      <div class="usage-card-num">효과 & 한계</div>
+      <h3>개선된 점과 남은 과제</h3>
+      <div class="tag-row">
+        <div class="tag-item">
+          <span class="tag-label good">개선</span>
+          <p>모르는 분야에 대해 별도로 공부하거나 조사하는 시간 없이 이미지 제작 가능. AI가 없었다면 해당 분야를 충분히 이해한 후에야 작업을 진행할 수 있었을 것. 제작까지의 시간이 매우 단축됨.</p>
+        </div>
+        <div class="tag-item">
+          <span class="tag-label bad">한계</span>
+          <p>적합한 이미지인지 검증 필요 → mysc 또는 AI에게 질문하여 해소</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- 03 레슨런 -->
+<section class="lesson-section">
+  <div class="lesson-section-inner">
+
+    <div class="section-header" style="margin-top: 0;">
+      <div class="section-num section-num--light">03</div>
+      <div class="section-title">레슨런</div>
+    </div>
+
+    <div class="lesson-list">
+
+      <div class="lesson-card">
+        <div class="lesson-num">Lesson 01</div>
+        <h3>모르는 영역도 AI가 채워준다</h3>
+        <p class="lesson-quote">"원래같으면 공부하고, 이미지 찾고, 긴가민가하고… 시간이 매우 오래 걸렸을 것입니다."</p>
+        <p class="lesson-body">
+          모르는 분야에 대해 깊게 공부하지 않아도 AI가 핵심 정보를 빠르게 제공해줍니다. 생소한 산업의 기업을 소개해야 할 때도, 공부와 조사 없이 곧바로 작업에 진입할 수 있게 되었습니다.
+        </p>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-num">Lesson 02</div>
+        <h3>제작 시간, 획기적으로 단축</h3>
+        <p class="lesson-quote">"배경지식 습득 → 이미지 탐색 → 선택의 긴 과정이 AI 한 번의 프롬프트로 압축됩니다."</p>
+        <p class="lesson-body">
+          과거엔 분야를 이해한 뒤에야 이미지를 찾을 수 있었지만, 이제는 소개 내용을 AI에 입력하는 것만으로 적합한 이미지 키워드와 프롬프트를 즉시 얻을 수 있습니다. 전체 제작 리드타임이 크게 줄었습니다.
+        </p>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-num">Lesson 03</div>
+        <h3>AI는 대체가 아닌 검증의 파트너</h3>
+        <p class="lesson-quote">"AI가 제안한 이미지가 적합한지 다시 AI에게 묻고, 담당자에게 확인받아 완성합니다."</p>
+        <p class="lesson-body">
+          AI가 생성한 결과물이 항상 정확한 것은 아닙니다. 적합성 검증 단계에서도 AI를 적극 활용하고, 최종적으로는 mysc 담당자와 소통하여 품질을 확보하는 구조가 효과적입니다. AI는 일을 대신하는 것이 아니라, 함께 완성도를 높이는 협업 도구입니다.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  벤처리움 카드뉴스 제작 · AI 활용 사례 · 2026
+</footer>
+
+</body>
+</html>
